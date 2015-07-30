@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('jobscaper', ['ionic', 'jobscaper.controllers'])
+angular.module('jobscaper', ['ionic', 'restangular', 'jobscaper.controllers'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -22,7 +22,13 @@ angular.module('jobscaper', ['ionic', 'jobscaper.controllers'])
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
+
+    RestangularProvider.setBaseUrl('http://localhost:3000');
+    RestangularProvider.setRestangularFields({
+      id: '_id'
+    });
+
     $stateProvider
 
       .state('app', {

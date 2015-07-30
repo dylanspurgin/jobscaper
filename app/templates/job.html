@@ -14,7 +14,7 @@
       <ion-item class="item-stable">
         <h2>{{task.name}}</h2>
 
-        <div class="pull-right"><ion-toggle ng-model="task.complete" toggle-class="toggle-calm">Complete</ion-toggle></div>
+        <div class="pull-right"><ion-toggle ng-model="task.complete" toggle-class="toggle-calm" ng-click="save()">Complete</ion-toggle></div>
 
         <div class="clear-right padding-top">
           <h3>Materials</h3>

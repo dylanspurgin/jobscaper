@@ -40,81 +40,20 @@ angular.module('jobscaper.controllers', [])
     };
   })
 
-  .controller('JobListController', function ($scope) {
-    $scope.jobs = [
-      {
-        id: 1,
-        name: '1910 Harrold St'
-      },
-      {
-        id: 2,
-        name: '2603 McGregor'
-      },
-      {
-        id: 3,
-        name: '11812 Tedford'
-      },
-      {
-        id: 4,
-        name: '666 UrMoms Hs'
-      }
-    ];
+  .controller('JobListController', function ($scope, JobsService) {
+    JobsService.getAll().then(function(jobs) {
+      $scope.jobs = jobs;
+    })
   })
 
-  .controller('JobController', function ($scope, $stateParams) {
+  .controller('JobController', function ($scope, $state, JobsService) {
 
-    $scope.job = {
-      id: 1,
-      name: '1910 Harrold St',
-      clientContact: {
-        name: 'Billy Joe Philmore',
-        phone: '512 555 1212',
-        address1: '1920 Harrold St',
-        city: 'Austin',
-        state: 'Tx',
-        zip: '78704'
-      },
-      overview: 'Morbi in euismod urna, vitae congue odio. Nullam in interdum enim. Vestibulum tristique placerat felis, eget facilisis justo accumsan non. Curabitur a libero interdum, vestibulum ipsum eu, laoreet quam. Nunc in dapibus velit. Maecenas ac neque leo.',
-      tasks: [
-        {
-          id: 1,
-          complete: true,
-          name: 'Concrete Pathway',
-          materials: [
-            {
-              name: 'bag of cement',
-              quantity: 14
-            },
-            {
-              name: 'Gallon of stain',
-              quantity: 2
-            }
-          ]
-        },
-        {
-          id: 2,
-          complete: false,
-          name: 'Cedar Fence',
-          materials: [
-            {
-              name: '8\' metal post',
-              quantity: 18
-            },
-            {
-              name: '8x4 cedar picket',
-              quantity: 266
-            },
-            {
-              name: 'bag of cement',
-              quantity: 22
-            },
-            {
-              name: 'Gallon of stain',
-              quantity: 4
-            }
-          ]
-        }
-      ]
+    JobsService.get($state.params.jobId).then(function (job) {
+      $scope.job = job;
+    });
+
+    $scope.save = function () {
+      $scope.job.save();
     }
 
   });
