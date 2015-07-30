@@ -1,0 +1,39 @@
+<ion-view view-title="{{job.name}}">
+  <ion-content>
+    <h5>{{job.clientContact.name}}</h5>
+    <h5>{{job.clientContact.phone}}</h5>
+    <h5>{{job.clientContact.address1}}</h5>
+    <h5>{{job.clientContact.city}}, {{job.clientContact.state}} {{job.clientContact.zip}}</h5>
+
+    <h4>Overview</h4>
+    <p>{{job.overview}}</p>
+
+    <h4>Task List</h4>
+    <div ng-repeat="task in job.tasks">
+
+      <ion-item class="item-stable">
+        <h2>{{task.name}}</h2>
+
+        <div class="pull-right"><ion-toggle ng-model="task.complete" toggle-class="toggle-calm">Complete</ion-toggle></div>
+
+        <div class="clear-right padding-top">
+          <h3>Materials</h3>
+          <ion-item ng-repeat="material in task.materials">
+            {{material.quantity}} x {{material.name}}
+          </ion-item>
+        </div>
+
+      </ion-item>
+    </div>
+
+    </div>
+
+    <h4>Comments</h4>
+    <div ng-repeat="comment in comments">
+      <span><bold>{{comment.commenter}}</bold></span>
+      <p>{{comment.comment}}</p>
+      <br/>
+    </div>
+
+  </ion-content>
+</ion-view>
