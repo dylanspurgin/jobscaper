@@ -24,7 +24,7 @@ angular.module('jobscaper', ['ionic', 'restangular', 'jobscaper.controllers'])
 
   .config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
 
-    RestangularProvider.setBaseUrl('http://localhost:3000');
+    RestangularProvider.setBaseUrl('mongodb://heroku_8rfgzwt8:j4gtpfbdk21m8f2b34obklesn1@ds033153.mongolab.com:33153/heroku_8rfgzwt8/api');
     RestangularProvider.setRestangularFields({
       id: '_id'
     });
